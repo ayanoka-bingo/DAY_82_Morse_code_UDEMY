@@ -1,5 +1,7 @@
 LETTER_CODE_DICT = {
-    # LETTERS
+    # Letters, numbers, special characters as key; code as value
+
+    # LETTERS------------------------------------------
     "A": ".-", "B": "-...", "C": "-.-.", "D": "-..",
     "E": "." , "F": "..-.", "G": "--.", "H": "....",
     "I": "..", "J": ".---", "K": "-.-", "L": ".-..",
@@ -8,18 +10,25 @@ LETTER_CODE_DICT = {
     "U": "..-", "V": "...-", "W": ".--", "X": "-..-",
     "Y": "-.--", "Z": "--..",
 
-    # NUMBERS
+    # NUMBERS------------------------------------------
     "1": ".----", "2": "..---", "3": "...--", 
     "4": "....-", "5": ".....", "6": "-....",
     "7": "--...", "8": "---..", "9": "----.", 
     "0": "-----",
 
-    # SPECIAL CHARACTERS
+    # SPECIAL CHARACTERS------------------------------
     ",": "--..--", ".": ".-.-.-", "?": "..--..",
     ";": "-.-.-", ":": "---...", "/": "-..-.", 
     "-": "-....-", "'": ".----.", "(": "-.--.",
     ")": "-.--.-", "!": "-.-.--", '"':'.-..-.',  
 }
+
+CODE_LETTER_DICT = {
+    # Code as key and letters, numbers, special characters as values
+    code : letter for letter ,code in LETTER_CODE_DICT.items()
+    
+}
+
 
 
 def decode(code:str)-> str: 
@@ -29,11 +38,9 @@ def decode(code:str)-> str:
     for codes in code_list:
         new_code_list= codes.split(sep= " ")
         for itm in new_code_list:
-            for key, value in LETTER_CODE_DICT.items():
-                if itm == value:
-                    word += key
-                    break
+            word += f"{CODE_LETTER_DICT[itm]}"
         word += " "
+        
     return f"{word}"
 
 
@@ -42,15 +49,14 @@ def encode(text:str)-> str:
     code =""
     for letter in text:
         if letter != " ":
-            for key, value in LETTER_CODE_DICT.items():
-                if letter == key:
-                    code += f"{value} "
-                    break
+            code += f"{LETTER_CODE_DICT[letter]} "
         else:
             code += " "*2
     return f"{code}"
 
 is_cont = True
+
+
 
 
 while is_cont:
