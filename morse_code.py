@@ -1,6 +1,4 @@
-# code = input("What do you want : \ntype 'd' for decode,\ntype 'e' for encode:").lower()
-
-letter_dict = {
+LETTER_CODE_DICT = {
     # LETTERS
     "A": ".-", "B": "-...", "C": "-.-.", "D": "-..",
     "E": "." , "F": "..-.", "G": "--.", "H": "....",
@@ -26,26 +24,39 @@ letter_dict = {
 
 def decode(code:str)-> str: 
     """It helps to convert Morse code into English."""
-    for symbol in code:
-        if symbol == ".":
-            pass
-    pass
+    text = code.split(sep=" ")
+    word = ""
+    for itm in text:
+        for key, value in LETTER_CODE_DICT.items():
+            if itm == value:
+                word += key
+    return f"{word}"
+
+
 def encode(text:str)-> str:
     """It helps to convert English into Morse code."""
-    pass
+    code =""
+    for letter in text:
+        for key, value in LETTER_CODE_DICT.items():
+            if letter == key:
+                code += f"{value} "
+    return f"{code}"
 
-code = ""
+is_cont = True
 
 
-while code != 'end':
-    code = input("What do you want : \ntype 'd' for decode,\ntype 'e' for encode:").lower()
-    WORD = ""
-    MORSE_CODE = ""
+while is_cont:
+    wish = input("What do you want : \ntype 'd' for decode,\ntype 'e' for encode:").lower()
 
-    if code == 'd':
-        pass
-    elif code == 'e':
-        pass
+    if wish == 'd':
+        code = str(input('Code you want to convert into word:\t'))
+        print(f'The word is: {decode(code)}\n')
+    elif wish == 'e':
+        word = input('word you want to convert into code:\t').upper()
+        print(f'The code is: {encode(word)}\n')
+    elif wish =='end':
+        print("\033[31mENDING...\033[0m")
+        is_cont = False
     else:
         print("\033[31mINPUT ERROR\033[0m")
     
