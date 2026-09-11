@@ -24,12 +24,16 @@ LETTER_CODE_DICT = {
 
 def decode(code:str)-> str: 
     """It helps to convert Morse code into English."""
-    text = code.split(sep=" ")
+    code_list = code.replace('/', '   ').split(sep="   ")
     word = ""
-    for itm in text:
-        for key, value in LETTER_CODE_DICT.items():
-            if itm == value:
-                word += key
+    for codes in code_list:
+        new_code_list= codes.split(sep= " ")
+        for itm in new_code_list:
+            for key, value in LETTER_CODE_DICT.items():
+                if itm == value:
+                    word += key
+                    break
+        word += " "
     return f"{word}"
 
 
@@ -37,9 +41,13 @@ def encode(text:str)-> str:
     """It helps to convert English into Morse code."""
     code =""
     for letter in text:
-        for key, value in LETTER_CODE_DICT.items():
-            if letter == key:
-                code += f"{value} "
+        if letter != " ":
+            for key, value in LETTER_CODE_DICT.items():
+                if letter == key:
+                    code += f"{value} "
+                    break
+        else:
+            code += " "*2
     return f"{code}"
 
 is_cont = True
