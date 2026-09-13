@@ -47,7 +47,7 @@
 <p>
   <ul>
     <li>
-      SOS (Distress Signal) : ... --- ... : (three dots, three dashes, three dots)
+      SOS (Distress Signal) : ... --- ... (three dots, three dashes, three dots)
     </li>
     <li>
        A: .- (dot-dash)
